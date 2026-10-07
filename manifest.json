@@ -1,0 +1,27 @@
+{
+  "name": "قرآن کمپینین — AK TECH",
+  "short_name": "قرآن",
+  "description": "قرآن سے روزانہ تعلق جوڑنے کا آسان ساتھی — 549 صفحات، پارہ کنورٹر، تلاوت، بیجز اور بہت کچھ",
+  "start_url": "/ISLAM-29/",
+  "scope": "/ISLAM-29/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#eef5f1",
+  "theme_color": "#0e7a5f",
+  "lang": "ur",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3004/3004458.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3004/3004458.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
