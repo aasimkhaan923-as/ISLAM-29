@@ -4,10 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#0e7a5f">
-<title>قرآن کمپینین • AK TECH — v5.9</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
+<title>قرآن کمپینین • AK TECH — v6.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
+/* ============================================================
+   RESET & THEME VARIABLES (SAME AS v5.9 + NEW READER)
+   ============================================================ */
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;width:100%;overflow:hidden;overscroll-behavior:none;-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--text);font-family:'Noto Naskh Arabic','Segoe UI',Tahoma,system-ui,sans-serif;font-size:15px;line-height:1.7;direction:rtl;text-align:right;transition:background .4s,color .4s}
@@ -205,118 +208,78 @@ button{cursor:pointer;border:0;background:none;position:relative;overflow:hidden
 .toast{position:fixed;bottom:calc(var(--nav-h) + 20px + env(safe-area-inset-bottom));left:50%;transform:translate(-50%,20px);z-index:999;max-width:88vw;padding:11px 20px;border-radius:999px;background:rgba(13,42,32,.95);backdrop-filter:blur(10px);color:#fff;font-size:13px;text-align:center;opacity:0;pointer-events:none;box-shadow:0 12px 32px rgba(0,0,0,.32);transition:opacity .3s,transform .3s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 [data-theme="dark"] .toast{background:rgba(30,60,48,.95)}
-.hijri-mini{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,var(--header-a),var(--header-b),var(--header-c));color:#fff;position:relative;overflow:hidden;box-shadow:0 8px 22px var(--header-shadow)}
-.hijri-mini::before{content:"";position:absolute;inset:0;opacity:.3;pointer-events:none;background-image:radial-gradient(circle at 20% 30%,rgba(255,255,255,.3) 0 2px,transparent 3px),radial-gradient(circle at 80% 70%,rgba(255,255,255,.2) 0 2px,transparent 3px);background-size:36px 36px,50px 50px}
-.hijri-mini .hm-icon{position:relative;font-size:34px;line-height:1}
-.hijri-mini .hm-info{position:relative;flex:1 1 0;min-width:0}
-.hijri-mini .hm-day{font-size:24px;font-weight:800;line-height:1.1;font-family:'Amiri',serif}
-.hijri-mini .hm-month{font-size:13px;font-weight:600;opacity:.92;margin-top:2px}
-.hijri-mini .hm-year{font-size:11px;opacity:.78;margin-top:3px}
-.hijri-mini .hm-greg{font-size:11px;opacity:.82;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.22)}
-.event-list{display:flex;flex-direction:column;gap:8px;margin-top:4px}
-.event-card{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:14px;background:var(--card-2);border:1.5px solid var(--border)}
-.event-card.today{background:linear-gradient(90deg,var(--gold-soft),transparent);border-color:var(--gold);box-shadow:0 3px 12px var(--gold-soft)}
-.event-icon{flex:0 0 40px;width:40px;height:40px;display:grid;place-items:center;font-size:19px;border-radius:11px;background:var(--emerald-soft);border:1px solid var(--border)}
-.event-card.today .event-icon{background:var(--gold);color:#fff;border-color:var(--gold)}
-.event-info{flex:1 1 0;min-width:0}
-.event-name{font-size:13.5px;font-weight:700;color:var(--text-strong);line-height:1.4}
-.event-date{font-size:11px;color:var(--muted);margin-top:1px}
-.event-badge{flex:0 0 auto;font-size:10px;font-weight:700;padding:4px 9px;border-radius:999px;background:var(--emerald-soft);color:var(--emerald);border:1px solid var(--border);white-space:nowrap}
-.event-card.today .event-badge{background:var(--gold);color:#fff;border-color:var(--gold)}
-.ramadan-banner{margin-top:12px;padding:14px;border-radius:16px;background:linear-gradient(135deg,#4a1c63,#6a2a8a);color:#fff;text-align:center;box-shadow:0 6px 20px rgba(74,28,99,.35);position:relative;overflow:hidden}
-.ramadan-banner::before{content:"";position:absolute;inset:0;opacity:.3;pointer-events:none;background-image:radial-gradient(circle at 20% 30%,rgba(255,255,255,.4) 0 2px,transparent 3px),radial-gradient(circle at 80% 70%,rgba(255,255,255,.3) 0 2px,transparent 3px);background-size:36px 36px,50px 50px}
-.ramadan-banner .rb-icon{position:relative;font-size:28px;line-height:1}
-.ramadan-banner .rb-title{position:relative;font-size:15px;font-weight:800;margin-top:4px;font-family:'Amiri',serif}
-.ramadan-banner .rb-sub{position:relative;font-size:11px;opacity:.9;margin-top:2px}
-.about-hero{width:100%;padding:22px 18px;border-radius:20px;background:linear-gradient(135deg,var(--header-a),var(--header-b),var(--header-c));color:#fff;position:relative;overflow:hidden;box-shadow:0 10px 28px var(--header-shadow);text-align:center;margin-bottom:12px}
-.about-hero::before{content:"";position:absolute;inset:0;opacity:.35;pointer-events:none;background-image:radial-gradient(circle at 15% 30%,rgba(255,255,255,.3) 0 2px,transparent 3px),radial-gradient(circle at 85% 70%,rgba(255,255,255,.2) 0 2px,transparent 3px);background-size:40px 40px,54px 54px}
-.about-hero .ab-logo{position:relative;width:60px;height:60px;margin:0 auto;border-radius:16px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);display:grid;place-items:center;font-size:30px}
-.about-hero .ab-name{position:relative;font-size:19px;font-weight:800;margin-top:10px;font-family:'Amiri',serif}
-.about-hero .ab-ver{position:relative;display:inline-block;margin-top:6px;font-size:11.5px;font-weight:700;padding:4px 14px;border-radius:999px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.32)}
-.about-hero .ab-tag{position:relative;font-size:12px;opacity:.9;margin-top:8px;line-height:1.7}
-.about-hero .ab-dev{position:relative;display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:5px 12px;border-radius:999px;background:rgba(0,0,0,.25);font-size:11.5px;font-weight:700;border:1px solid rgba(255,255,255,.28)}
-.about-section{margin-bottom:14px}
-.about-section:last-child{margin-bottom:0}
-.about-section h4{font-size:13.5px;font-weight:700;color:var(--text-strong);margin:0 0 8px;display:flex;align-items:center;gap:6px}
-.about-section p{font-size:12.5px;color:var(--text);line-height:1.85;margin:0}
-.about-features{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:4px}
-.about-feature{padding:10px;border-radius:12px;background:var(--card-2);border:1px solid var(--border);text-align:center}
-.about-feature .af-icon{font-size:20px;line-height:1}
-.about-feature .af-name{font-size:11px;font-weight:700;color:var(--text-strong);margin-top:4px}
-.roadmap-list{display:flex;flex-direction:column;gap:8px;margin-top:4px}
-.roadmap-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:12px;background:var(--card-2);border:1px solid var(--border)}
-.roadmap-item.done{background:linear-gradient(90deg,var(--emerald-soft),transparent);border-color:var(--emerald)}
-.roadmap-item.current{background:linear-gradient(90deg,var(--gold-soft),transparent);border-color:var(--gold)}
-.roadmap-v{flex:0 0 auto;font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;background:var(--muted);color:#fff;min-width:52px;text-align:center;line-height:1.4}
-.roadmap-item.done .roadmap-v{background:var(--emerald)}
-.roadmap-item.current .roadmap-v{background:var(--gold);color:#fff}
-.roadmap-info{flex:1 1 0;min-width:0}
-.roadmap-title{font-size:12.5px;font-weight:700;color:var(--text-strong);line-height:1.4}
-.roadmap-desc{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5}
-.credits-footer{margin-top:12px;padding-top:12px;border-top:1px dashed var(--border);text-align:center}
-.credits-footer .cf-love{font-size:12.5px;color:var(--text);line-height:1.8}
-.credits-footer .cf-heart{color:#e74c3c;font-size:14px}
-.credits-footer .cf-sub{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.6}
-.credits-footer .cf-dua{font-family:'Amiri',serif;font-size:14px;color:var(--emerald);margin-top:8px;line-height:1.9}
-.dev-badge{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 12px;border-radius:999px;background:var(--card-2);border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--emerald)}
-.khatm-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.72);backdrop-filter:blur(8px)}
-.khatm-modal.show{display:flex;animation:fadeIn .35s ease}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.khatm-inner{position:relative;width:100%;max-width:440px;max-height:90vh;overflow-y:auto;background:linear-gradient(160deg,var(--header-a),var(--header-b));border-radius:24px;padding:26px 20px 20px;color:#fff;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.5);animation:khatmPop .6s cubic-bezier(.34,1.56,.64,1)}
-@keyframes khatmPop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
-.khatm-bismillah{font-family:'Amiri',serif;font-size:20px;margin-bottom:8px}
-.khatm-title{font-family:'Amiri',serif;font-size:28px;font-weight:700;line-height:1.3;margin:8px 0 4px}
-.khatm-subtitle{font-size:13.5px;opacity:.9;margin-bottom:14px}
-.khatm-dua{font-family:'Amiri',serif;font-size:16px;line-height:2;padding:14px 12px;border-radius:14px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);margin:12px 0}
-.khatm-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
-.khatm-stat{padding:9px 4px;border-radius:12px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22)}
-.khatm-stat b{display:block;font-size:19px;font-weight:800;line-height:1.2}
-.khatm-stat span{display:block;font-size:10px;opacity:.85;margin-top:2px}
-.khatm-actions{display:flex;flex-direction:column;gap:8px;margin-top:14px}
-.khatm-actions .btn{background:rgba(255,255,255,.22);color:#fff;border:1px solid rgba(255,255,255,.32);box-shadow:none}
-.khatm-actions .btn.gold{background:linear-gradient(135deg,#e0be4e,#c9a227);border-color:transparent}
-.khatm-close{position:absolute;top:12px;left:12px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.2);color:#fff;font-size:18px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.3)}
-.confetti{position:absolute;top:-20px;width:10px;height:14px;opacity:.9;pointer-events:none;animation:fall linear forwards}
-@keyframes fall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(90vh) rotate(720deg);opacity:0}}
-/* ============ CERTIFICATE MODAL (NEW) ============ */
-.cert-modal{position:fixed;inset:0;z-index:1100;display:none;align-items:center;justify-content:center;padding:12px;background:rgba(0,0,0,.85);backdrop-filter:blur(10px)}
-.cert-modal.show{display:flex;animation:fadeIn .35s ease}
-.cert-inner{position:relative;width:100%;max-width:520px;max-height:92vh;display:flex;flex-direction:column;background:var(--card-solid);border-radius:20px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.55);animation:khatmPop .5s cubic-bezier(.34,1.56,.64,1)}
-.cert-header{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border);background:var(--card-2)}
-.cert-header h3{margin:0;font-size:14px;font-weight:700;color:var(--text-strong)}
-.cert-close{width:32px;height:32px;border-radius:50%;background:var(--card);color:var(--muted);font-size:16px;display:grid;place-items:center;border:1px solid var(--border)}
-.cert-preview{flex:1 1 auto;min-height:0;overflow-y:auto;padding:12px;display:flex;align-items:flex-start;justify-content:center;background:var(--card-2)}
-.cert-preview img{width:100%;max-width:100%;height:auto;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.18);display:block;-webkit-touch-callout:default}
-.cert-actions{flex:0 0 auto;padding:12px 14px;padding-bottom:calc(12px + env(safe-area-inset-bottom));background:var(--card-2);border-top:1px solid var(--border);display:flex;flex-direction:column;gap:8px}
-.cert-hint{font-size:11px;color:var(--muted);text-align:center;line-height:1.6;padding:0 4px}
-.cert-hint b{color:var(--emerald)}
-@media (min-width:480px){.stats{grid-template-columns:repeat(4,1fr)}.badges-grid{grid-template-columns:repeat(5,1fr)}}
+/* ============================================================
+   NEW: QURAN READER
+   ============================================================ */
+.reader-container{display:flex;flex-direction:column;gap:10px;min-height:0}
+.reader-toolbar{display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--card);border:1px solid var(--border);border-radius:14px;flex-wrap:wrap}
+.reader-toolbar .reader-page-input{flex:1 1 120px;min-width:0;display:flex;align-items:center;gap:6px}
+.reader-toolbar .reader-page-input label{font-size:11.5px;color:var(--muted);font-weight:600}
+.reader-toolbar .reader-page-input input{flex:1 1 auto;min-width:0;width:70px;padding:8px 10px;border-radius:10px;border:1.5px solid var(--border-strong);background:var(--card-2);text-align:center;font-weight:700;font-size:14px;outline:none}
+.reader-toolbar .reader-page-input input:focus{border-color:var(--emerald);box-shadow:0 0 0 3px var(--emerald-soft)}
+.reader-toolbar .reader-surah-name{flex:1 1 auto;font-size:13px;font-weight:700;color:var(--text-strong);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.reader-nav-btns{display:flex;gap:6px;flex:0 0 auto}
+.reader-nav-btn{width:38px;height:38px;display:grid;place-items:center;border-radius:11px;background:var(--emerald-soft);color:var(--emerald);border:1px solid var(--border);font-size:16px;font-weight:700;transition:transform .15s,background .2s}
+.reader-nav-btn:active{transform:scale(.9);background:var(--emerald);color:#fff}
+.reader-nav-btn:disabled{opacity:.4;pointer-events:none}
+.reader-page-info{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--card-2);border-radius:12px;border:1px solid var(--border);font-size:11.5px;color:var(--muted)}
+.reader-page-info b{color:var(--emerald);font-weight:800}
+.reader-page-info .info-parah{color:var(--gold-deep);font-weight:700}
+.reader-content{background:var(--card-solid);border:1px solid var(--border);border-radius:16px;padding:18px 14px;min-height:300px;position:relative;overflow:hidden;box-shadow:var(--shadow-sm)}
+.reader-content::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,var(--emerald-soft),transparent 55%);pointer-events:none;opacity:.5}
+.reader-content .reader-bismillah{position:relative;text-align:center;font-family:'Amiri',serif;font-size:24px;color:var(--emerald);margin-bottom:14px;padding-bottom:10px;border-bottom:1px dashed var(--border-strong)}
+.reader-content .reader-lines{position:relative;display:flex;flex-direction:column;gap:2px}
+.reader-line{position:relative;font-family:'Scheherazade New','Amiri','Noto Naskh Arabic',serif;font-size:22px;line-height:2.2;color:var(--text-strong);text-align:justify;text-align-last:center;padding:2px 0;word-spacing:2px}
+.reader-line .line-num{display:inline-block;min-width:24px;margin-inline-end:6px;font-size:12px;font-weight:700;color:var(--emerald);background:var(--emerald-soft);border-radius:6px;padding:1px 6px;font-family:'Noto Naskh Arabic',sans-serif;vertical-align:middle}
+.reader-line .ayah-end{display:inline-block;font-size:22px;color:var(--gold);margin:0 3px;font-family:'Amiri',serif}
+.reader-verse-ar{font-family:'Scheherazade New','Amiri',serif;font-size:23px;line-height:2.2;color:var(--text-strong);display:block}
+.reader-verse-ur{font-family:'Noto Naskh Arabic',sans-serif;font-size:14px;line-height:1.9;color:var(--muted);margin-top:4px;padding-inline-start:12px;border-inline-start:3px solid var(--emerald-soft);display:block}
+.reader-verse{padding:10px 0;border-bottom:1px dashed var(--border)}
+.reader-verse:last-child{border-bottom:0}
+.reader-verse-key{font-size:11px;font-weight:700;color:var(--emerald);background:var(--emerald-soft);padding:2px 8px;border-radius:999px;display:inline-block;margin-bottom:4px;border:1px solid var(--border)}
+.reader-loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;gap:12px;color:var(--muted)}
+.reader-spinner{width:36px;height:36px;border:3px solid var(--emerald-soft);border-top-color:var(--emerald);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.reader-error{text-align:center;padding:24px 16px;color:var(--danger);font-size:13px;line-height:1.8}
+.reader-empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px}
+.reader-quick-jump{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.reader-quick-btn{font-size:11px;padding:5px 10px;border-radius:999px;background:var(--card-2);border:1px solid var(--border-strong);color:var(--text);transition:transform .15s,background .2s}
+.reader-quick-btn:active{transform:scale(.94);background:var(--emerald-soft)}
+.reader-quick-btn.active{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.reader-bookmark-btn{flex:0 0 auto;width:38px;height:38px;display:grid;place-items:center;border-radius:11px;background:var(--gold-soft);color:var(--gold-deep);border:1px solid rgba(201,162,39,.4);font-size:16px;transition:transform .15s,background .2s}
+.reader-bookmark-btn:active{transform:scale(.9)}
+.reader-bookmark-btn.saved{background:var(--gold);color:#fff;border-color:var(--gold)}
+.bookmark-list{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.bookmark-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 12px;border-radius:12px;background:var(--card-2);border:1px solid var(--border);font-size:12.5px}
+.bookmark-item .bm-info{flex:1 1 0;min-width:0}
+.bookmark-item .bm-page{font-weight:800;color:var(--emerald)}
+.bookmark-item .bm-date{font-size:10.5px;color:var(--muted);margin-top:1px}
+.bookmark-item .bm-go{flex:0 0 auto;padding:5px 10px;border-radius:999px;background:var(--emerald-soft);color:var(--emerald);font-size:11px;font-weight:700;border:1px solid var(--border)}
+.bookmark-item .bm-del{flex:0 0 auto;padding:5px 8px;border-radius:999px;background:rgba(192,57,43,.1);color:var(--danger);font-size:11px;font-weight:700;border:1px solid rgba(192,57,43,.25)}
 @media (max-width:360px){
-  body{font-size:14px}
-  .hero-num{flex:0 0 86px}.hero-num .num{font-size:24px}
-  .stat b{font-size:15.5px}.stat span{font-size:10px}
-  .prayer-name{font-size:13px}
-  .nav-btn .nav-icon{font-size:23px}.nav-btn .nav-label{font-size:11.5px}
-  .brand-text h1{font-size:13.5px}.icon-btn{width:34px;height:34px;font-size:15px}
-  .streak-info .s-num{font-size:26px}.streak-flame{font-size:34px}
-  .theme-grid{grid-template-columns:repeat(3,1fr)}
-  .badges-grid{grid-template-columns:repeat(3,1fr)}
-  .khatm-title{font-size:22px}
-  .about-features{grid-template-columns:1fr}
-  .back-btn{width:34px;height:34px;font-size:18px}
+  .reader-line{font-size:19px;line-height:2.1}
+  .reader-verse-ar{font-size:20px}
+  .reader-verse-ur{font-size:13px}
+  .reader-toolbar{padding:8px 10px;gap:6px}
+  .reader-nav-btn{width:34px;height:34px;font-size:14px}
+}
+@media (min-width:480px){
+  .reader-line{font-size:25px;line-height:2.3}
+  .reader-verse-ar{font-size:26px}
 }
 </style>
 </head>
 <body>
 
 <div class="app-shell">
+  <!-- ========== HEADER ========== -->
   <header class="app-header">
     <div class="header-inner">
       <button class="back-btn hidden" id="backBtn" type="button" aria-label="واپس">←</button>
       <div class="logo">☪</div>
       <div class="brand-text">
         <h1>قرآن کمپینین</h1>
-        <p id="headerSub">AK TECH • ورژن 5.9</p>
+        <p id="headerSub">AK TECH • ورژن 6.0</p>
       </div>
       <div class="header-actions">
         <div class="streak-pill" title="اسٹریک"><span>🔥</span><span id="headerStreakNum">0</span></div>
@@ -325,9 +288,11 @@ button{cursor:pointer;border:0;background:none;position:relative;overflow:hidden
     </div>
   </header>
 
+  <!-- ========== CONTENT ========== -->
   <main class="app-content" id="appContent">
     <div class="content-inner">
 
+      <!-- ===== TAB 1: TODAY ===== -->
       <section class="tab-panel active" id="panel-today">
         <div class="streak-banner">
           <div class="streak-flame">🔥</div>
@@ -370,38 +335,121 @@ button{cursor:pointer;border:0;background:none;position:relative;overflow:hidden
         <div class="prayer-list" id="prayerList"></div>
       </section>
 
+      <!-- ===== TAB 2: PROGRESS ===== -->
       <section class="tab-panel" id="panel-progress">
         <div class="date-pill-row"><span class="section-title">📊 مجموعی پیش رفت</span><span class="pill" id="ovPctPill">0%</span></div>
-        <div class="card">
-          <div class="card-body">
-            <div class="progress-top"><span>پورا قرآن (<span id="ovTotalLabel">549</span> صفحات • 30 پارے)</span><strong><span id="ovPct">0%</span></strong></div>
-            <div class="bar"><i id="ovBar"></i></div>
-            <div class="progress-bottom"><span>پڑھے: <b id="ovRead">0</b></span><span>باقی: <b id="ovLeft">549</b></span></div>
-            <div class="stats">
-              <div class="stat"><b id="stDailyPages">0</b><span>روزانہ صفحات</span></div>
-              <div class="stat gold"><b id="stDailyParah">0</b><span>روزانہ پارہ ≈</span></div>
-              <div class="stat"><b id="stDonePages">0</b><span>مکمل صفحات</span></div>
-              <div class="stat gold"><b id="stDoneParah">0</b><span>مکمل پارے ≈</span></div>
-            </div>
-            <div class="stats">
-              <div class="stat"><b id="stStart">1</b><span>آغاز صفحہ</span></div>
-              <div class="stat"><b id="stCurrent">1</b><span>اگلا صفحہ</span></div>
-              <div class="stat"><b id="stDaysLeft">30</b><span>باقی دن</span></div>
-              <div class="stat gold"><b id="stRemParah">30</b><span>باقی پارے ≈</span></div>
-            </div>
+        <div class="card"><div class="card-body">
+          <div class="progress-top"><span>پورا قرآن (<span id="ovTotalLabel">549</span> صفحات • 30 پارے)</span><strong><span id="ovPct">0%</span></strong></div>
+          <div class="bar"><i id="ovBar"></i></div>
+          <div class="progress-bottom"><span>پڑھے: <b id="ovRead">0</b></span><span>باقی: <b id="ovLeft">549</b></span></div>
+          <div class="stats">
+            <div class="stat"><b id="stDailyPages">0</b><span>روزانہ صفحات</span></div>
+            <div class="stat gold"><b id="stDailyParah">0</b><span>روزانہ پارہ ≈</span></div>
+            <div class="stat"><b id="stDonePages">0</b><span>مکمل صفحات</span></div>
+            <div class="stat gold"><b id="stDoneParah">0</b><span>مکمل پارے ≈</span></div>
           </div>
-        </div>
-        <div class="card" style="margin-top:12px;">
-          <div class="card-head"><h2>📈 ہفتہ وار پیش رفت</h2><span class="pill">7 دن</span></div>
-          <div class="card-body"><div class="chart-wrap"><canvas id="weeklyChart"></canvas></div><div class="target-info" id="weeklyNote">—</div></div>
-        </div>
-        <div class="card" style="margin-top:12px;">
-          <div class="card-head"><h2>🏆 بیجز اور اعزازات</h2><span class="pill" id="badgeCountPill">0 / 8</span></div>
-          <div class="card-body"><div class="badges-grid" id="badgesGrid"></div></div>
-        </div>
+          <div class="stats">
+            <div class="stat"><b id="stStart">1</b><span>آغاز صفحہ</span></div>
+            <div class="stat"><b id="stCurrent">1</b><span>اگلا صفحہ</span></div>
+            <div class="stat"><b id="stDaysLeft">30</b><span>باقی دن</span></div>
+            <div class="stat gold"><b id="stRemParah">30</b><span>باقی پارے ≈</span></div>
+          </div>
+        </div></div>
+        <div class="card" style="margin-top:12px;"><div class="card-head"><h2>📈 ہفتہ وار پیش رفت</h2><span class="pill">7 دن</span></div><div class="card-body"><div class="chart-wrap"><canvas id="weeklyChart"></canvas></div><div class="target-info" id="weeklyNote">—</div></div></div>
+        <div class="card" style="margin-top:12px;"><div class="card-head"><h2>🏆 بیجز اور اعزازات</h2><span class="pill" id="badgeCountPill">0 / 8</span></div><div class="card-body"><div class="badges-grid" id="badgesGrid"></div></div></div>
         <div class="card" style="margin-top:12px;"><div class="card-body"><div class="note" id="statusNote">—</div><div class="target-info" id="targetInfo">—</div></div></div>
       </section>
 
+      <!-- ===== TAB 3: QURAN (NEW) ===== -->
+      <section class="tab-panel" id="panel-quran">
+        <div class="date-pill-row">
+          <span class="section-title">📖 قرآنِ کریم</span>
+          <span class="pill" id="quranScriptPill">عثمانی</span>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="reader-toolbar">
+          <div class="reader-page-input">
+            <label for="readerPageInput">صفحہ:</label>
+            <input type="number" id="readerPageInput" min="1" max="549" value="1" inputmode="numeric">
+            <span style="font-size:12px;color:var(--muted);font-weight:700">/ 549</span>
+          </div>
+          <button class="reader-bookmark-btn" id="readerBookmarkBtn" type="button" title="بک مارک">🔖</button>
+          <div class="reader-nav-btns">
+            <button class="reader-nav-btn" id="readerPrevBtn" type="button" title="پچھلا">‹</button>
+            <button class="reader-nav-btn" id="readerNextBtn" type="button" title="اگلا">›</button>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="reader-page-info">
+          <span>سورہ: <b id="readerSurahName">—</b></span>
+          <span>پارہ: <span class="info-parah" id="readerParahNum">—</span></span>
+        </div>
+
+        <!-- Content -->
+        <div class="reader-content" id="readerContent">
+          <div class="reader-loading" id="readerLoading">
+            <div class="reader-spinner"></div>
+            <div>لوڈ ہو رہا ہے...</div>
+          </div>
+        </div>
+
+        <!-- Quick Jump -->
+        <div class="card">
+          <div class="card-head"><h2>⚡ فوری صفحات</h2></div>
+          <div class="card-body">
+            <div class="reader-quick-jump" id="readerQuickJump">
+              <button class="reader-quick-btn" data-page="1">صفحہ 1</button>
+              <button class="reader-quick-btn" data-page="20">صفحہ 20</button>
+              <button class="reader-quick-btn" data-page="50">صفحہ 50</button>
+              <button class="reader-quick-btn" data-page="100">صفحہ 100</button>
+              <button class="reader-quick-btn" data-page="200">صفحہ 200</button>
+              <button class="reader-quick-btn" data-page="300">صفحہ 300</button>
+              <button class="reader-quick-btn" data-page="400">صفحہ 400</button>
+              <button class="reader-quick-btn" data-page="500">صفحہ 500</button>
+              <button class="reader-quick-btn" data-page="549">صفحہ 549</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bookmarks -->
+        <div class="card" style="margin-top:12px;">
+          <div class="card-head"><h2>🔖 بک مارکس</h2><span class="pill" id="bookmarkCountPill">0</span></div>
+          <div class="card-body">
+            <div class="bookmark-list" id="bookmarkList">
+              <div class="reader-empty">ابھی کوئی بک مارک نہیں</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reader Settings -->
+        <div class="card" style="margin-top:12px;">
+          <div class="card-head"><h2>⚙️ ترتیبات</h2></div>
+          <div class="card-body">
+            <div class="field">
+              <label for="readerScriptSelect">قرآن کا رسم الخط</label>
+              <select id="readerScriptSelect">
+                <option value="quran-uthmani" selected>عثمانی (Uthmani)</option>
+                <option value="quran-simple">سادہ عربی</option>
+                <option value="quran-tajweed">تجوید (رنگین)</option>
+              </select>
+              <small class="hint">نوٹ: تجوید کا رنگین رسم الخط صرف چند سرورز پر دستیاب ہے</small>
+            </div>
+            <div class="field" style="margin-bottom:0;">
+              <label for="readerTranslationSelect">ترجمہ</label>
+              <select id="readerTranslationSelect">
+                <option value="ur.jalandhry" selected>فتح محمد جالندھری (اردو)</option>
+                <option value="ur.kanzuliman">کنز الایمان (اردو)</option>
+                <option value="en.sahih">صحیح انٹرنیشنل (انگریزی)</option>
+                <option value="">ترجمہ نہیں</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== TAB 4: AUDIO ===== -->
       <section class="tab-panel" id="panel-audio">
         <div class="audio-hero">
           <div class="ah-icon">🎧</div>
@@ -443,6 +491,7 @@ button{cursor:pointer;border:0;background:none;position:relative;overflow:hidden
         <audio id="audioEl" preload="none"></audio>
       </section>
 
+      <!-- ===== TAB 5: SETTINGS ===== -->
       <section class="tab-panel" id="panel-settings">
         <div class="date-pill-row"><span class="section-title">🌙 اسلامی کیلنڈر</span></div>
         <div class="hijri-mini">
@@ -459,14 +508,8 @@ button{cursor:pointer;border:0;background:none;position:relative;overflow:hidden
           <div class="rb-title">رمضان المبارک</div>
           <div class="rb-sub" id="ramadanSub">روزہ اور تراویح کا مہینہ</div>
         </div>
-        <div class="card" style="margin-top:12px;">
-          <div class="card-head"><h2>📅 اہم اسلامی تاریخیں</h2><span class="pill" id="eventMonthPill">—</span></div>
-          <div class="card-body"><div class="event-list" id="eventList"></div></div>
-        </div>
-        <div class="card" style="margin-top:12px;">
-          <div class="card-head"><h2>🗓️ سال بھر کے مواقع</h2></div>
-          <div class="card-body"><div class="event-list" id="yearEventsList"></div></div>
-        </div>
+        <div class="card" style="margin-top:12px;"><div class="card-head"><h2>📅 اہم اسلامی تاریخیں</h2><span class="pill" id="eventMonthPill">—</span></div><div class="card-body"><div class="event-list" id="eventList"></div></div></div>
+        <div class="card" style="margin-top:12px;"><div class="card-head"><h2>🗓️ سال بھر کے مواقع</h2></div><div class="card-body"><div class="event-list" id="yearEventsList"></div></div></div>
 
         <div class="date-pill-row" style="margin-top:8px;"><span class="section-title">🎨 تھیم منتخب کریں</span></div>
         <div class="card"><div class="card-body">
@@ -545,7 +588,7 @@ button{cursor:pointer;border:0;background:none;position:relative;overflow:hidden
         <div class="about-hero">
           <div class="ab-logo">☪</div>
           <div class="ab-name">قرآن کمپینین</div>
-          <div class="ab-ver">VIP ایڈیشن • ورژن 5.9</div>
+          <div class="ab-ver">VIP ایڈیشن • ورژن 6.0</div>
           <div class="ab-tag">قرآن سے روزانہ تعلق جوڑنے کا آسان، خوبصورت اور مؤثر ساتھی</div>
           <div class="ab-dev">✨ AK TECH پریزنٹس ✨</div>
         </div>
@@ -553,7 +596,7 @@ button{cursor:pointer;border:0;background:none;position:relative;overflow:hidden
         <div class="card"><div class="card-body">
           <div class="about-section">
             <h4>🎯 مقصد</h4>
-            <p>بہت سے لوگ قرآن مکمل کرنے کا ارادہ کرتے ہیں لیکن شیڈول اور پیش رفت کا ٹریک نہ ہونے کی وجہ سے راستہ بھٹک جاتے ہیں۔ یہ ایپ اس مشکل کا حل ہے — روزانہ کا واضح ہدف، پانچ نمازوں میں تقسیم، پارہ کنورٹر، اور روحانی جذبہ بڑھانے والے بیجز — سب ایک جگہ۔</p>
+            <p>بہت سے لوگ قرآن مکمل کرنے کا ارادہ کرتے ہیں لیکن شیڈول اور پیش رفت کا ٹریک نہ ہونے کی وجہ سے راستہ بھٹک جاتے ہیں۔ یہ ایپ اس مشکل کا حل ہے — روزانہ کا واضح ہدف، پانچ نمازوں میں تقسیم، پارہ کنورٹر، قرآن پڑھنے کا فیچر، اور روحانی جذبہ بڑھانے والے بیجز — سب ایک جگہ۔</p>
           </div>
           <div class="about-section">
             <h4>✨ اہم خصوصیات</h4>
@@ -576,16 +619,12 @@ button{cursor:pointer;border:0;background:none;position:relative;overflow:hidden
             <h4>🚀 اپڈیٹس کا سفر (روڈ میپ)</h4>
             <div class="roadmap-list">
               <div class="roadmap-item done">
-                <div class="roadmap-v">v5.9</div>
-                <div class="roadmap-info"><div class="roadmap-title">✓ موجودہ ورژن — AK TECH</div><div class="roadmap-desc">سرٹیفکیٹ پیش نظارہ + بہتر ڈاؤن لوڈ + 4 ٹیبز</div></div>
+                <div class="roadmap-v">v6.0</div>
+                <div class="roadmap-info"><div class="roadmap-title">✓ موجودہ ورژن — AK TECH</div><div class="roadmap-desc">قرآن پڑھنے کا فیچر (آن لائن) + بک مارک + 5 ٹیبز</div></div>
               </div>
               <div class="roadmap-item current">
-                <div class="roadmap-v">v6.0</div>
-                <div class="roadmap-info"><div class="roadmap-title">🕌 نماز اوقات + تسبیح کاؤنٹر</div><div class="roadmap-desc">GPS سے اوقات، اگلی نماز کا countdown، ڈیجیٹل تسبیح</div></div>
-              </div>
-              <div class="roadmap-item">
                 <div class="roadmap-v">v6.5</div>
-                <div class="roadmap-info"><div class="roadmap-title">📖 قرآن متن + اردو ترجمہ</div><div class="roadmap-desc">آف لائن قرآن کا متن (کنز الایمان)</div></div>
+                <div class="roadmap-info"><div class="roadmap-title">🕌 نماز اوقات + تسبیح کاؤنٹر</div><div class="roadmap-desc">GPS سے اوقات، اگلی نماز کا countdown، ڈیجیٹل تسبیح</div></div>
               </div>
               <div class="roadmap-item">
                 <div class="roadmap-v">v7.0</div>
@@ -602,7 +641,7 @@ button{cursor:pointer;border:0;background:none;position:relative;overflow:hidden
             <div class="cf-love">محبت اور دعا کے ساتھ بنایا گیا <span class="cf-heart">❤</span></div>
             <div class="cf-dua">اللَّهُمَّ اجْعَلْ الْقُرْآنَ رَبِيعَ قُلُوبِنَا</div>
             <div class="cf-sub">اے اللہ! قرآن کو ہمارے دلوں کی بہار بنا دے</div>
-            <div class="cf-sub" style="margin-top:10px;opacity:.7;">© 2026 • قرآن کمپینین v5.9 • AK TECH</div>
+            <div class="cf-sub" style="margin-top:10px;opacity:.7;">© 2026 • قرآن کمپینین v6.0 • AK TECH</div>
           </div>
         </div></div>
 
@@ -614,17 +653,19 @@ button{cursor:pointer;border:0;background:none;position:relative;overflow:hidden
     </div>
   </main>
 
+  <!-- ========== BOTTOM NAV (5 TABS) ========== -->
   <nav class="bottom-nav">
     <div class="nav-inner">
       <button type="button" class="nav-btn active" data-tab="today"><span class="nav-icon">📖</span><span class="nav-label">آج کا ہدف</span></button>
       <button type="button" class="nav-btn" data-tab="progress"><span class="nav-icon">📊</span><span class="nav-label">پیش رفت</span></button>
+      <button type="button" class="nav-btn" data-tab="quran"><span class="nav-icon">📚</span><span class="nav-label">قرآن</span></button>
       <button type="button" class="nav-btn" data-tab="audio"><span class="nav-icon">🎧</span><span class="nav-label">تلاوت</span></button>
       <button type="button" class="nav-btn" data-tab="settings"><span class="nav-icon">⚙️</span><span class="nav-label">ترتیب</span></button>
     </div>
   </nav>
 </div>
 
-<!-- KHATM MODAL -->
+<!-- ========== KHATM MODAL ========== -->
 <div class="khatm-modal" id="khatmModal">
   <div class="khatm-inner">
     <button class="khatm-close" id="khatmClose" type="button">✕</button>
@@ -645,7 +686,7 @@ button{cursor:pointer;border:0;background:none;position:relative;overflow:hidden
   </div>
 </div>
 
-<!-- CERTIFICATE PREVIEW MODAL (NEW) -->
+<!-- ========== CERTIFICATE MODAL ========== -->
 <div class="cert-modal" id="certModal">
   <div class="cert-inner">
     <div class="cert-header">
@@ -668,14 +709,20 @@ button{cursor:pointer;border:0;background:none;position:relative;overflow:hidden
 <script>
 (function(){
 "use strict";
+
+/* ============================================================
+   CONSTANTS (SAME AS v5.9 + READER KEYS)
+   ============================================================ */
 var TOTAL_PAGES=549,TOTAL_PARAS=30,PAGES_PER_PARAH=TOTAL_PAGES/TOTAL_PARAS;
-var STORAGE_KEY="smart_quran_v5_9";
-var ACTIVE_TAB_KEY="smart_quran_tab_v5_9";
-var THEME_KEY="smart_quran_theme_v5_9";
-var SKIN_KEY="smart_quran_skin_v5_9";
-var REMINDER_KEY="smart_quran_reminder_v5_9";
-var USERNAME_KEY="smart_quran_username_v5_9";
-var AUDIO_KEY="smart_quran_audio_v5_9";
+var STORAGE_KEY="smart_quran_v6_0";
+var ACTIVE_TAB_KEY="smart_quran_tab_v6_0";
+var THEME_KEY="smart_quran_theme_v6_0";
+var SKIN_KEY="smart_quran_skin_v6_0";
+var REMINDER_KEY="smart_quran_reminder_v6_0";
+var USERNAME_KEY="smart_quran_username_v6_0";
+var AUDIO_KEY="smart_quran_audio_v6_0";
+/* Reader keys — ALAG hain, is liye purana data safe hai */
+var READER_KEY="smart_quran_reader_v1";
 
 var PARAH_STARTS=[1,19,37,55,73,91,109,127,145,163,181,199,217,235,253,271,289,307,325,343,361,379,397,415,433,451,469,487,505,523];
 var PRAYERS=[{key:"fajr",name:"فجر",icon:"🌅"},{key:"dhuhr",name:"ظہر",icon:"☀️"},{key:"asr",name:"عصر",icon:"🌤️"},{key:"maghrib",name:"مغرب",icon:"🌇"},{key:"isha",name:"عشاء",icon:"🌙"}];
@@ -712,6 +759,9 @@ var BADGES=[
   {id:"khatm",icon:"📖",name:"پہلا ختم",req:"پورا قرآن",check:function(c){return c.plan.totalDone>=c.plan.totalToRead&&c.plan.totalToRead>0;}}
 ];
 
+/* ============================================================
+   HELPERS (SAME)
+   ============================================================ */
 function $(id){return document.getElementById(id);}
 function clamp(v,a,b){return v<a?a:(v>b?b:v);}
 function pad2(n){return n<10?"0"+n:""+n;}
@@ -731,6 +781,9 @@ function getHijri(date){
   }catch(e){return null;}
 }
 
+/* ============================================================
+   THEME (SAME)
+   ============================================================ */
 var currentTheme="light",currentSkin="emerald";
 function applyTheme(t){
   currentTheme=(t==="dark")?"dark":"light";
@@ -761,6 +814,9 @@ function initThemeAndSkin(){
   applySkin(ss||"emerald");
 }
 
+/* ============================================================
+   STATE (SAME)
+   ============================================================ */
 var state=null,weeklyChart=null;
 function defaultState(){var t=todayISO();return {startDate:t,mode:"days",totalDays:30,targetDate:addDaysISO(t,29),startMode:"page1",startPage:1,parah:1,log:{},completedQuran:false};}
 function loadState(){
@@ -792,6 +848,9 @@ function loadState(){
 }
 function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){}}
 
+/* ============================================================
+   PROGRESS (SAME)
+   ============================================================ */
 function pagesForDate(iso){
   var day=state.log[iso]; if(!day) return 0;
   var sum=0,i;
@@ -865,6 +924,9 @@ function pruneLog(){
   }
 }
 
+/* ============================================================
+   RENDER (SAME)
+   ============================================================ */
 function render(){
   var plan=getPlan();
   syncToday(plan); pruneLog(); save();
@@ -1078,6 +1140,234 @@ function renderCalendar(){
   $("yearEventsList").innerHTML=yhtml;
 }
 
+/* ============================================================
+   QURAN READER (NEW)
+   ============================================================ */
+var readerState=null;
+var readerPage=1;
+var readerScript="quran-uthmani";
+var readerTranslation="ur.jalandhry";
+var readerBookmarks=[];
+var readerLoading=false;
+
+function defaultReader(){return {page:1,script:"quran-uthmani",translation:"ur.jalandhry",bookmarks:[]};}
+function loadReader(){
+  var def=defaultReader();
+  try{
+    var raw=localStorage.getItem(READER_KEY);
+    if(!raw) return def;
+    var p=JSON.parse(raw);
+    if(!p||typeof p!=="object") return def;
+    var s=defaultReader();
+    s.page=clamp(parseInt(p.page,10)||1,1,549);
+    if(["quran-uthmani","quran-simple","quran-tajweed"].indexOf(p.script)!==-1) s.script=p.script;
+    if(["ur.jalandhry","ur.kanzuliman","en.sahih",""].indexOf(p.translation)!==-1) s.translation=p.translation;
+    if(Array.isArray(p.bookmarks)){
+      s.bookmarks=p.bookmarks.filter(function(b){return b&&typeof b.page==="number"&&b.page>=1&&b.page<=549;});
+    }
+    return s;
+  }catch(e){return def;}
+}
+function saveReader(){
+  try{
+    readerState.page=readerPage;
+    readerState.script=readerScript;
+    readerState.translation=readerTranslation;
+    readerState.bookmarks=readerBookmarks;
+    localStorage.setItem(READER_KEY,JSON.stringify(readerState));
+  }catch(e){}
+}
+function getSurahForPage(page){
+  /* simple mapping — using standard Madani Mushaf pagination */
+  /* For accurate mapping, we rely on API response */
+  return "—";
+}
+function getParahForPage(page){
+  /* 30 paras over 549 pages => ~18.3 pages per para */
+  var para=Math.ceil(page/18.3);
+  if(para<1) para=1;
+  if(para>30) para=30;
+  return para;
+}
+async function fetchPage(pageNum){
+  readerLoading=true;
+  var content=$("readerContent");
+  content.innerHTML='<div class="reader-loading"><div class="reader-spinner"></div><div>لوڈ ہو رہا ہے... صفحہ '+pageNum+'</div></div>';
+  try{
+    /* Step 1: fetch Arabic text */
+    var urlAr="https://api.alquran.cloud/v1/page/"+pageNum+"/"+readerScript;
+    var respAr=await fetch(urlAr);
+    if(!respAr.ok) throw new Error("HTTP "+respAr.status);
+    var dataAr=await respAr.json();
+    if(!dataAr||dataAr.code!==200||!dataAr.data) throw new Error("Invalid API response");
+
+    /* Step 2: fetch translation if set */
+    var translationData=null;
+    if(readerTranslation){
+      try{
+        var urlTr="https://api.alquran.cloud/v1/page/"+pageNum+"/"+readerTranslation;
+        var respTr=await fetch(urlTr);
+        if(respTr.ok){
+          var dataTr=await respTr.json();
+          if(dataTr&&dataTr.code===200&&dataTr.data) translationData=dataTr.data;
+        }
+      }catch(e){ /* translation fail silently */ }
+    }
+
+    renderPage(pageNum,dataAr.data,translationData);
+    readerLoading=false;
+  }catch(err){
+    readerLoading=false;
+    content.innerHTML='<div class="reader-error">⚠️ صفحہ لوڈ نہیں ہو سکا<br>'+err.message+'<br><br>انٹرنیٹ کنکشن چیک کریں یا دوبارہ کوشش کریں۔<br><br><button class="btn primary" onclick="window.__reloadReader()" style="max-width:200px;margin:0 auto;">🔄 دوبارہ کوشش</button></div>';
+  }
+}
+function renderPage(pageNum,pageData,translationData){
+  var content=$("readerContent");
+  var surahName=pageData.surah&&pageData.surah.englishName?pageData.surah.englishName:"—";
+  /* API returns surah name — use urdu name if available */
+  var urduSurahName="—";
+  if(pageData.ayahs&&pageData.ayahs.length>0){
+    var firstAyah=pageData.ayahs[0];
+    if(firstAyah.surah&&firstAyah.surah.number){
+      var idx=firstAyah.surah.number-1;
+      if(idx>=0&&idx<SURAHS.length) urduSurahName=SURAHS[idx];
+    }
+  }
+  $("readerSurahName").textContent=urduSurahName;
+  $("readerParahNum").textContent=getParahForPage(pageNum);
+  $("quranScriptPill").textContent=readerScript==="quran-uthmani"?"عثمانی":(readerScript==="quran-simple"?"سادہ":"تجوید");
+
+  var html='<div class="reader-lines">';
+  var ayahs=pageData.ayahs||[];
+
+  /* Build translation map: verse_key -> text */
+  var trMap={};
+  if(translationData&&translationData.ayahs){
+    translationData.ayahs.forEach(function(a){
+      var key=a.surah.number+":"+a.numberInSurah;
+      trMap[key]=a.text;
+    });
+  }
+
+  /* Bismillah on page 1 and start of surahs (except Tawbah 9 and Fatiha 1) */
+  var firstAyah=ayahs[0];
+  var isBismillahPage=(firstAyah&&firstAyah.numberInSurah===1&&firstAyah.surah.number!==1&&firstAyah.surah.number!==9);
+  if(isBismillahPage){
+    html+='<div class="reader-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>';
+  }
+
+  /* Group ayahs by surah to show surah headers */
+  var currentSurah=null;
+  ayahs.forEach(function(ayah,i){
+    var surahNum=ayah.surah.number;
+    var verseKey=surahNum+":"+ayah.numberInSurah;
+    /* surah header when new surah starts (and not first ayah of page) */
+    if(surahNum!==currentSurah){
+      if(currentSurah!==null&&i>0){
+        html+='<div class="reader-surah-header" style="text-align:center;margin:14px 0 10px;padding:8px;border-top:2px dashed var(--border-strong);border-bottom:2px dashed var(--border-strong);color:var(--emerald);font-family:\'Amiri\',serif;font-size:20px;font-weight:700;">﴾ '+SURAHS[surahNum-1]+' ﴿</div>';
+      }
+      currentSurah=surahNum;
+    }
+    var arText=ayah.text||"";
+    var trText=trMap[verseKey]||"";
+    var endMark=ayah.numberInSurah;
+    html+='<div class="reader-verse" data-verse="'+verseKey+'">';
+    html+='<div class="reader-verse-key">'+verseKey+'</div>';
+    html+='<div class="reader-verse-ar">'+arText+' <span class="ayah-end">﴿'+endMark+'﴾</span></div>';
+    if(trText){
+      html+='<div class="reader-verse-ur">'+trText+'</div>';
+    }
+    html+='</div>';
+  });
+  html+='</div>';
+  content.innerHTML=html;
+
+  /* Update bookmark button */
+  updateBookmarkBtn();
+  /* Update quick jump active state */
+  updateQuickJump(pageNum);
+}
+function updateBookmarkBtn(){
+  var btn=$("readerBookmarkBtn");
+  var found=readerBookmarks.some(function(b){return b.page===readerPage;});
+  if(found){btn.classList.add("saved");btn.textContent="🔖";}
+  else{btn.classList.remove("saved");btn.textContent="🔖";}
+}
+function updateQuickJump(pageNum){
+  var btns=document.querySelectorAll(".reader-quick-btn");
+  btns.forEach(function(b){
+    var p=parseInt(b.getAttribute("data-page"),10);
+    if(p===pageNum) b.classList.add("active");
+    else b.classList.remove("active");
+  });
+}
+function renderBookmarks(){
+  var list=$("bookmarkList");
+  if(!readerBookmarks.length){
+    list.innerHTML='<div class="reader-empty">ابھی کوئی بک مارک نہیں</div>';
+    $("bookmarkCountPill").textContent="0";
+    return;
+  }
+  var sorted=readerBookmarks.slice().sort(function(a,b){return b.savedAt-a.savedAt;});
+  var html="";
+  sorted.forEach(function(bm,idx){
+    var d=new Date(bm.savedAt);
+    var dateStr=pad2(d.getDate())+" "+URDU_MONTHS[d.getMonth()]+" "+d.getFullYear();
+    html+='<div class="bookmark-item">';
+    html+='<div class="bm-info"><div class="bm-page">📖 صفحہ '+bm.page+'</div><div class="bm-date">'+dateStr+'</div></div>';
+    html+='<button class="bm-go" data-page="'+bm.page+'" type="button">کھولیں</button>';
+    html+='<button class="bm-del" data-idx="'+idx+'" type="button">✕</button>';
+    html+='</div>';
+  });
+  list.innerHTML=html;
+  $("bookmarkCountPill").textContent=readerBookmarks.length+"";
+}
+function goToPage(pageNum){
+  pageNum=clamp(parseInt(pageNum,10)||1,1,549);
+  readerPage=pageNum;
+  $("readerPageInput").value=pageNum;
+  saveReader();
+  fetchPage(pageNum);
+  /* scroll to top of content */
+  var c=$("appContent");
+  if(c) c.scrollTop=0;
+}
+function toggleBookmark(){
+  var existingIdx=-1;
+  for(var i=0;i<readerBookmarks.length;i++){
+    if(readerBookmarks[i].page===readerPage){existingIdx=i;break;}
+  }
+  if(existingIdx>=0){
+    readerBookmarks.splice(existingIdx,1);
+    showToast("بک مارک ہٹا دیا");
+  } else {
+    readerBookmarks.push({page:readerPage,savedAt:Date.now()});
+    showToast("🔖 بک مارک محفوظ ہو گیا");
+  }
+  saveReader();
+  renderBookmarks();
+  updateBookmarkBtn();
+}
+function initReader(){
+  readerState=loadReader();
+  readerPage=readerState.page;
+  readerScript=readerState.script;
+  readerTranslation=readerState.translation;
+  readerBookmarks=readerState.bookmarks||[];
+
+  $("readerPageInput").value=readerPage;
+  $("readerScriptSelect").value=readerScript;
+  $("readerTranslationSelect").value=readerTranslation;
+
+  renderBookmarks();
+  /* Preload page 1 if user on quran tab */
+  /* we lazy fetch on first switch */
+}
+window.__reloadReader=function(){fetchPage(readerPage);};
+
+/* ============================================================
+   AUDIO (SAME)
+   ============================================================ */
 var audioEl=$("audioEl"),currentSurah=1,currentReciterIndex=0;
 function loadAudioPrefs(){try{var raw=localStorage.getItem(AUDIO_KEY);if(raw){var p=JSON.parse(raw);if(p&&typeof p==="object"){if(p.surah>=1&&p.surah<=114) currentSurah=p.surah;if(p.reciter>=0&&p.reciter<RECITERS.length) currentReciterIndex=p.reciter;}}}catch(e){}}
 function saveAudioPrefs(){try{localStorage.setItem(AUDIO_KEY,JSON.stringify({surah:currentSurah,reciter:currentReciterIndex}));}catch(e){}}
@@ -1119,6 +1409,9 @@ function setupAudio(){
   $("audioReciterName").textContent=r.name;
 }
 
+/* ============================================================
+   SOUND + HAPTIC (SAME)
+   ============================================================ */
 var audioCtx=null;
 function playChime(){
   try{
@@ -1141,6 +1434,9 @@ function haptic(p){if(!navigator.vibrate)return;try{navigator.vibrate(p||15);}ca
 function fbSuccess(){playChime();haptic([12,40,18]);}
 function fbTap(){haptic(8);}
 
+/* ============================================================
+   ACTIONS (SAME)
+   ============================================================ */
 function togglePrayer(idx){
   var today=todayISO();
   var day=state.log[today];
@@ -1186,6 +1482,9 @@ function resetAll(){
   save();fillSetupInputs();render();showToast("سب کچھ ری سیٹ");
 }
 
+/* ============================================================
+   TOAST (SAME)
+   ============================================================ */
 var toastTimer=null;
 function showToast(msg){
   var el=$("toast");if(!el) return;
@@ -1194,6 +1493,9 @@ function showToast(msg){
   toastTimer=setTimeout(function(){el.classList.remove("show");},2200);
 }
 
+/* ============================================================
+   TABS (SAME + QURAN)
+   ============================================================ */
 function switchTab(tab){
   var panels=document.querySelectorAll(".tab-panel"),i;
   for(i=0;i<panels.length;i++) panels[i].classList.toggle("active",panels[i].id==="panel-"+tab);
@@ -1205,13 +1507,23 @@ function switchTab(tab){
   else $("backBtn").classList.add("hidden");
   fbTap();
   if(tab==="progress") setTimeout(function(){if(weeklyChart) weeklyChart.resize();else buildChart();},80);
+  if(tab==="quran"){
+    /* lazy-load first page if not loaded yet */
+    var content=$("readerContent");
+    if(content&&!content.querySelector(".reader-lines")){
+      fetchPage(readerPage);
+    }
+  }
 }
 function loadActiveTab(){
   var t="today";
-  try{var v=localStorage.getItem(ACTIVE_TAB_KEY);if(v&&["today","progress","audio","settings"].indexOf(v)!==-1) t=v;}catch(e){}
+  try{var v=localStorage.getItem(ACTIVE_TAB_KEY);if(v&&["today","progress","quran","audio","settings"].indexOf(v)!==-1) t=v;}catch(e){}
   switchTab(t);
 }
 
+/* ============================================================
+   SETUP UI (SAME)
+   ============================================================ */
 function buildParahOptions(){var sel=$("parahSelect"),html="",i;for(i=0;i<30;i++) html+='<option value="'+(i+1)+'">پارہ '+(i+1)+' (صفحہ '+PARAH_STARTS[i]+')</option>';sel.innerHTML=html;}
 function updateModeUI(){
   var isDays=state.mode==="days";
@@ -1228,6 +1540,9 @@ function fillSetupInputs(){
   updateModeUI();updateStartFields();updateChips();
 }
 
+/* ============================================================
+   REMINDER (SAME)
+   ============================================================ */
 var reminder={enabled:false,time:"08:00"},reminderTimer=null;
 function loadReminder(){try{var raw=localStorage.getItem(REMINDER_KEY);if(!raw)return;var p=JSON.parse(raw);if(p&&typeof p==="object"){reminder.enabled=!!p.enabled;if(typeof p.time==="string"&&/^\d{2}:\d{2}$/.test(p.time)) reminder.time=p.time;}}catch(e){}}
 function saveReminder(){try{localStorage.setItem(REMINDER_KEY,JSON.stringify(reminder));}catch(e){}}
@@ -1285,9 +1600,12 @@ function toggleReminder(){
   }
 }
 
+/* ============================================================
+   EXPORT / IMPORT (SAME + READER)
+   ============================================================ */
 function exportData(){
   try{
-    var payload={app:"Quran Companion — AK TECH",version:"5.9",exportedAt:new Date().toISOString(),state:state,reminder:reminder,skin:currentSkin,theme:currentTheme};
+    var payload={app:"Quran Companion — AK TECH",version:"6.0",exportedAt:new Date().toISOString(),state:state,reminder:reminder,skin:currentSkin,theme:currentTheme,reader:{page:readerPage,script:readerScript,translation:readerTranslation,bookmarks:readerBookmarks}};
     var blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
     var url=URL.createObjectURL(blob),a=document.createElement("a");
     a.href=url;a.download="quran-companion-backup-"+todayISO()+".json";
@@ -1317,6 +1635,20 @@ function importData(file){
       for(d in s.log){if(!s.log.hasOwnProperty(d)) continue;var day=s.log[d];if(!day||typeof day!=="object"){delete s.log[d];continue;}if(!Array.isArray(day.prayers)) day.prayers=[];if(typeof day.extra!=="number"||day.extra<0) day.extra=0;}
       state=s;
       if(parsed.reminder){reminder.enabled=!!parsed.reminder.enabled;if(typeof parsed.reminder.time==="string"&&/^\d{2}:\d{2}$/.test(parsed.reminder.time)) reminder.time=parsed.reminder.time;saveReminder();scheduleReminder();updateReminderUI();}
+      if(parsed.reader){
+        try{
+          var r=parsed.reader;
+          if(r.page) readerPage=clamp(parseInt(r.page,10)||1,1,549);
+          if(r.script) readerScript=r.script;
+          if(r.translation!==undefined) readerTranslation=r.translation;
+          if(Array.isArray(r.bookmarks)) readerBookmarks=r.bookmarks;
+          saveReader();
+          $("readerPageInput").value=readerPage;
+          $("readerScriptSelect").value=readerScript;
+          $("readerTranslationSelect").value=readerTranslation;
+          renderBookmarks();
+        }catch(e){}
+      }
       if(parsed.skin) applySkin(parsed.skin);
       if(parsed.theme) applyTheme(parsed.theme);
       save();fillSetupInputs();render();fbSuccess();
@@ -1327,6 +1659,9 @@ function importData(file){
   reader.readAsText(file);
 }
 
+/* ============================================================
+   KHATM + CERTIFICATE (SAME — BEAUTIFUL DESIGN)
+   ============================================================ */
 function spawnConfetti(container){
   var colors=["#0e7a5f","#c9a227","#e0be4e","#19a97e","#f0cf6a","#ffffff"];
   for(var i=0;i<70;i++){
@@ -1363,97 +1698,48 @@ function getUserName(){
   }
   return n;
 }
-
-/* ============================================================
-   CERTIFICATE — BEAUTIFUL DESIGN + IN-APP PREVIEW
-   ============================================================ */
-var certDataURL="";
-var certBlob=null;
-
+var certDataURL="",certBlob=null;
 function buildCertificateCanvas(){
   var plan=getPlan(),name=getUserName();
   if(!name) return null;
-
   var W=900,H=1250;
   var canvas=document.createElement("canvas");
   canvas.width=W;canvas.height=H;
   var ctx=canvas.getContext("2d");
-
-  /* background gradient */
   var g=ctx.createLinearGradient(0,0,W,H);
   g.addColorStop(0,"#0a5c47");g.addColorStop(0.5,"#0e7a5f");g.addColorStop(1,"#13906e");
   ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
-
-  /* subtle dot pattern */
   ctx.globalAlpha=0.08;ctx.fillStyle="#ffffff";
   for(var y=40;y<H;y+=60){for(var x=40;x<W;x+=60){ctx.beginPath();ctx.arc(x,y,2,0,Math.PI*2);ctx.fill();}}
   ctx.globalAlpha=1;
-
-  /* gold double border */
   ctx.strokeStyle="#c9a227";ctx.lineWidth=8;ctx.strokeRect(30,30,W-60,H-60);
   ctx.strokeStyle="#e0be4e";ctx.lineWidth=2;ctx.strokeRect(50,50,W-100,H-100);
-
-  /* corner ornaments */
   ctx.fillStyle="#e0be4e";
-  [[50,50],[W-50,50],[50,H-50],[W-50,H-50]].forEach(function(c){
-    ctx.beginPath();ctx.arc(c[0],c[1],10,0,Math.PI*2);ctx.fill();
-  });
-
-  /* Bismillah */
+  [[50,50],[W-50,50],[50,H-50],[W-50,H-50]].forEach(function(c){ctx.beginPath();ctx.arc(c[0],c[1],10,0,Math.PI*2);ctx.fill();});
   ctx.fillStyle="#ffffff";ctx.textAlign="center";
   ctx.font="bold 42px 'Amiri', serif";ctx.fillText("﷽",W/2,180);
-
-  /* Title */
   ctx.fillStyle="#e0be4e";ctx.font="bold 56px 'Amiri', serif";ctx.fillText("شہادتِ ختمِ قرآن",W/2,280);
-
-  /* Subtitle */
-  ctx.fillStyle="#ffffff";ctx.font="22px 'Noto Naskh Arabic', sans-serif";
-  ctx.fillText("Certificate of Quran Completion",W/2,325);
-
-  /* "This certifies that" */
-  ctx.fillStyle="rgba(255,255,255,0.85)";ctx.font="24px 'Noto Naskh Arabic', sans-serif";
-  ctx.fillText("یہ سند دی جاتی ہے",W/2,420);
-
-  /* Name */
+  ctx.fillStyle="#ffffff";ctx.font="22px 'Noto Naskh Arabic', sans-serif";ctx.fillText("Certificate of Quran Completion",W/2,325);
+  ctx.fillStyle="rgba(255,255,255,0.85)";ctx.font="24px 'Noto Naskh Arabic', sans-serif";ctx.fillText("یہ سند دی جاتی ہے",W/2,420);
   ctx.fillStyle="#ffffff";ctx.font="bold 60px 'Amiri', serif";ctx.fillText(name||"____",W/2,510);
-
-  /* underline */
-  ctx.strokeStyle="#e0be4e";ctx.lineWidth=3;
-  ctx.beginPath();ctx.moveTo(200,535);ctx.lineTo(W-200,535);ctx.stroke();
-
-  /* Completion text */
-  ctx.fillStyle="rgba(255,255,255,0.95)";ctx.font="26px 'Noto Naskh Arabic', sans-serif";
-  ctx.fillText("نے پورا قرآنِ کریم مکمل کیا",W/2,600);
-
-  ctx.fillStyle="rgba(255,255,255,0.8)";ctx.font="20px 'Noto Naskh Arabic', sans-serif";
-  ctx.fillText("اللہ تعالیٰ اس کلامِ پاک کی تلاوت کو قبول فرمائے",W/2,645);
-
-  /* 3 stat boxes */
+  ctx.strokeStyle="#e0be4e";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(200,535);ctx.lineTo(W-200,535);ctx.stroke();
+  ctx.fillStyle="rgba(255,255,255,0.95)";ctx.font="26px 'Noto Naskh Arabic', sans-serif";ctx.fillText("نے پورا قرآنِ کریم مکمل کیا",W/2,600);
+  ctx.fillStyle="rgba(255,255,255,0.8)";ctx.font="20px 'Noto Naskh Arabic', sans-serif";ctx.fillText("اللہ تعالیٰ اس کلامِ پاک کی تلاوت کو قبول فرمائے",W/2,645);
   [{x:130,lbl:"دن",val:plan.elapsed},{x:W/2,lbl:"صفحات",val:plan.totalDone},{x:W-130,lbl:"پارے",val:formatParah(plan.totalDoneParah)}].forEach(function(b){
     ctx.fillStyle="rgba(255,255,255,0.14)";roundRect(ctx,b.x-90,720,180,120,16);ctx.fill();
     ctx.strokeStyle="rgba(224,190,78,0.6)";ctx.lineWidth=2;roundRect(ctx,b.x-90,720,180,120,16);ctx.stroke();
     ctx.fillStyle="#e0be4e";ctx.font="bold 46px 'Amiri', serif";ctx.textAlign="center";ctx.fillText(String(b.val),b.x,790);
     ctx.fillStyle="rgba(255,255,255,0.9)";ctx.font="20px 'Noto Naskh Arabic', sans-serif";ctx.fillText(b.lbl,b.x,815);
   });
-
-  /* Dua */
   ctx.fillStyle="rgba(255,255,255,0.9)";ctx.font="italic 22px 'Amiri', serif";ctx.fillText("اللَّهُمَّ ارْحَمْنِي بِالْقُرْآنِ",W/2,910);
   ctx.font="italic 20px 'Amiri', serif";ctx.fillText("وَاجْعَلْهُ لِي إِمَامًا وَنُورًا وَهُدًى وَرَحْمَةً",W/2,945);
-
-  /* Dates */
-  ctx.fillStyle="rgba(255,255,255,0.85)";ctx.font="20px 'Noto Naskh Arabic', sans-serif";
-  ctx.fillText(formatDateUr(todayISO()),W/2,1020);
+  ctx.fillStyle="rgba(255,255,255,0.85)";ctx.font="20px 'Noto Naskh Arabic', sans-serif";ctx.fillText(formatDateUr(todayISO()),W/2,1020);
   var h=getHijri(new Date());
   if(h){ctx.font="18px 'Noto Naskh Arabic', sans-serif";ctx.fillStyle="rgba(255,255,255,0.65)";ctx.fillText(h.day+" "+HIJRI_MONTHS[h.month-1]+" "+h.year+" ہجری",W/2,1050);}
-
-  /* Footer */
-  ctx.fillStyle="rgba(224,190,78,0.9)";ctx.font="18px 'Noto Naskh Arabic', sans-serif";
-  ctx.fillText("قرآن کمپینین • v5.9 • AK TECH",W/2,1160);
-
+  ctx.fillStyle="rgba(224,190,78,0.9)";ctx.font="18px 'Noto Naskh Arabic', sans-serif";ctx.fillText("قرآن کمپینین • v6.0 • AK TECH",W/2,1160);
   return canvas;
 }
 function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
-
 function generateCertificate(){
   var name=getUserName();
   if(!name){showToast("سرٹیفکیٹ کے لیے نام ضروری ہے");return;}
@@ -1462,93 +1748,43 @@ function generateCertificate(){
     try{
       var canvas=buildCertificateCanvas();
       if(!canvas){showToast("مسئلہ پیش آیا");return;}
-
-      /* Convert to dataURL for preview & fallback */
       certDataURL=canvas.toDataURL("image/png");
-
-      /* Also make a Blob for download */
       certBlob=null;
-      if(canvas.toBlob){
-        canvas.toBlob(function(blob){
-          certBlob=blob;
-          openCertModal();
-        },"image/png");
-      } else {
-        openCertModal();
-      }
+      if(canvas.toBlob){canvas.toBlob(function(blob){certBlob=blob;openCertModal();},"image/png");}
+      else openCertModal();
     }catch(e){showToast("سرٹیفکیٹ بنانے میں مسئلہ");}
   },80);
 }
-
-function openCertModal(){
-  $("certImage").src=certDataURL;
-  $("certModal").classList.add("show");
-  fbSuccess();
-}
-function closeCertModal(){
-  $("certModal").classList.remove("show");
-  /* clear heavy data after a delay */
-  setTimeout(function(){$("certImage").src="";certDataURL="";certBlob=null;},400);
-}
-
-/* Download from modal */
+function openCertModal(){$("certImage").src=certDataURL;$("certModal").classList.add("show");fbSuccess();}
+function closeCertModal(){$("certModal").classList.remove("show");setTimeout(function(){$("certImage").src="";certDataURL="";certBlob=null;},400);}
 function downloadCertificate(){
   var filename="quran-certificate-"+todayISO()+".png";
-
-  /* Method 1: Blob download */
   if(certBlob){
     try{
       var url=URL.createObjectURL(certBlob);
-      var a=document.createElement("a");
-      a.href=url;a.download=filename;a.rel="noopener";
+      var a=document.createElement("a");a.href=url;a.download=filename;a.rel="noopener";
       document.body.appendChild(a);a.click();
       setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(url);},1500);
-      fbSuccess();
-      showToast("📥 اگر ڈاؤن لوڈ نہ ہوا تو تصویر دبا کر رکھیں");
-      return;
-    }catch(e){/* fall through */}
+      fbSuccess();showToast("📥 اگر ڈاؤن لوڈ نہ ہوا تو تصویر دبا کر رکھیں");return;
+    }catch(e){}
   }
-
-  /* Method 2: dataURL fallback */
   try{
-    var a2=document.createElement("a");
-    a2.href=certDataURL;a2.download=filename;
-    document.body.appendChild(a2);a2.click();
-    document.body.removeChild(a2);
-    fbSuccess();
-    showToast("📥 اگر ڈاؤن لوڈ نہ ہوا تو تصویر دبا کر رکھیں");
+    var a2=document.createElement("a");a2.href=certDataURL;a2.download=filename;
+    document.body.appendChild(a2);a2.click();document.body.removeChild(a2);
+    fbSuccess();showToast("📥 اگر ڈاؤن لوڈ نہ ہوا تو تصویر دبا کر رکھیں");
   }catch(e){showToast("ڈاؤن لوڈ ناکام — تصویر دبا کر محفوظ کریں");}
 }
-
-/* Share from modal */
 function shareCertificate(){
   try{
     var filename="quran-certificate-"+todayISO()+".png";
-    /* Web Share API with file */
     if(navigator.canShare && certBlob){
       var file=new File([certBlob],filename,{type:"image/png"});
-      if(navigator.canShare({files:[file]})){
-        navigator.share({
-          files:[file],
-          title:"قرآن کمپینین — سرٹیفکیٹ",
-          text:"میری قرآن ختم کی سند — AK TECH"
-        }).catch(function(){});
-        return;
-      }
+      if(navigator.canShare({files:[file]})){navigator.share({files:[file],title:"قرآن کمپینین — سرٹیفکیٹ",text:"میری قرآن ختم کی سند — AK TECH"}).catch(function(){});return;}
     }
-    /* Fallback: share text */
-    if(navigator.share){
-      var plan=getPlan();
-      navigator.share({
-        title:"قرآن کمپینین",
-        text:"🎉 میں نے قرآن مکمل کر لیا!\n📖 "+plan.totalDone+" صفحات • ≈ "+formatParah(plan.totalDoneParah)+" پارے\n— قرآن کمپینین • AK TECH"
-      }).catch(function(){});
-      return;
-    }
+    if(navigator.share){var plan=getPlan();navigator.share({title:"قرآن کمپینین",text:"🎉 میں نے قرآن مکمل کر لیا!\n📖 "+plan.totalDone+" صفحات • ≈ "+formatParah(plan.totalDoneParah)+" پارے\n— قرآن کمپینین • AK TECH"}).catch(function(){});return;}
     showToast("شیئر دستیاب نہیں");
   }catch(e){showToast("شیئر ناکام");}
 }
-
 function shareProgress(){
   var plan=getPlan(),streak=calculateStreak();
   var txt="🌟 میری قرآنِ کریم تلاوت کی پیش رفت\n\n🔥 مسلسل: "+streak+" دن\n📖 مکمل: "+plan.totalDone+"/"+plan.totalToRead+" صفحات\n📚 پارے: ≈ "+formatParah(plan.totalDoneParah)+"/"+formatParah(plan.totalToReadParah)+"\n📊 پیش رفت: "+Math.round((plan.totalDone/plan.totalToRead)*100)+"%\n\nاللہ ہم سب کو قرآن سے محبت عطا فرمائے 🤲\n— قرآن کمپینین • AK TECH";
@@ -1557,6 +1793,9 @@ function shareProgress(){
   else showToast("شیئر دستیاب نہیں");
 }
 
+/* ============================================================
+   RIPPLE + BACK (SAME)
+   ============================================================ */
 function attachRipple(el){
   if(!el) return;
   el.addEventListener("click",function(e){
@@ -1573,7 +1812,6 @@ function attachRipple(el){
     setTimeout(function(){if(r.parentNode) r.parentNode.removeChild(r);},620);
   });
 }
-
 function handleBackPress(){
   if($("certModal").classList.contains("show")){closeCertModal();return true;}
   if($("khatmModal").classList.contains("show")){hideKhatmModal();return true;}
@@ -1584,6 +1822,9 @@ function handleBackPress(){
   return false;
 }
 
+/* ============================================================
+   EVENTS (SAME + READER)
+   ============================================================ */
 function bindEvents(){
   $("themeBtn").addEventListener("click",function(){applyTheme(currentTheme==="dark"?"light":"dark");fbTap();});
   $("backBtn").addEventListener("click",function(){switchTab("today");});
@@ -1627,7 +1868,7 @@ function bindEvents(){
   $("openKhatmBtn").addEventListener("click",showKhatmModal);
   $("certificateBtn").addEventListener("click",generateCertificate);
 
-  /* Certificate modal events */
+  /* Certificate modal */
   $("certClose").addEventListener("click",closeCertModal);
   $("certModal").addEventListener("click",function(e){if(e.target===this) closeCertModal();});
   $("certDownloadBtn").addEventListener("click",downloadCertificate);
@@ -1649,7 +1890,58 @@ function bindEvents(){
   $("khatmShareBtn").addEventListener("click",shareProgress);
   $("khatmModal").addEventListener("click",function(e){if(e.target===this) hideKhatmModal();});
 
-  ["saveBtn","extraSaveBtn","extraResetBtn","exportBtn","importBtn","testNotifBtn","resetBtn","openKhatmBtn","certificateBtn","certDownloadBtn","certShareBtn"].forEach(function(id){attachRipple($(id));});
+  /* ============ QURAN READER EVENTS ============ */
+  $("readerPageInput").addEventListener("change",function(){
+    var v=parseInt(this.value,10)||1;
+    goToPage(v);
+  });
+  $("readerPrevBtn").addEventListener("click",function(){ if(readerPage>1) goToPage(readerPage-1); });
+  $("readerNextBtn").addEventListener("click",function(){ if(readerPage<549) goToPage(readerPage+1); });
+  $("readerBookmarkBtn").addEventListener("click",toggleBookmark);
+
+  $("readerScriptSelect").addEventListener("change",function(){
+    readerScript=this.value;
+    saveReader();
+    fetchPage(readerPage);
+  });
+  $("readerTranslationSelect").addEventListener("change",function(){
+    readerTranslation=this.value;
+    saveReader();
+    fetchPage(readerPage);
+  });
+
+  $("readerQuickJump").addEventListener("click",function(e){
+    var t=e.target;
+    while(t&&t!==this){
+      if(t.classList&&t.classList.contains("reader-quick-btn")){
+        goToPage(parseInt(t.getAttribute("data-page"),10));
+        return;
+      }
+      t=t.parentNode;
+    }
+  });
+
+  $("bookmarkList").addEventListener("click",function(e){
+    var t=e.target;
+    while(t&&t!==this){
+      if(t.classList&&t.classList.contains("bm-go")){
+        goToPage(parseInt(t.getAttribute("data-page"),10));
+        return;
+      }
+      if(t.classList&&t.classList.contains("bm-del")){
+        var idx=parseInt(t.getAttribute("data-idx"),10);
+        if(!isNaN(idx)&&idx>=0&&idx<readerBookmarks.length){
+          readerBookmarks.splice(idx,1);
+          saveReader();renderBookmarks();
+          showToast("بک مارک ہٹا دیا");
+        }
+        return;
+      }
+      t=t.parentNode;
+    }
+  });
+
+  ["saveBtn","extraSaveBtn","extraResetBtn","exportBtn","importBtn","testNotifBtn","resetBtn","openKhatmBtn","certificateBtn","certDownloadBtn","certShareBtn","readerPrevBtn","readerNextBtn","readerBookmarkBtn"].forEach(function(id){attachRipple($(id));});
 
   document.addEventListener("visibilitychange",function(){if(!document.hidden){render();scheduleReminder();}});
   window.addEventListener("focus",function(){render();});
@@ -1667,11 +1959,15 @@ function bindEvents(){
   window.addEventListener("resize",function(){if(weeklyChart) weeklyChart.resize();});
 }
 
+/* ============================================================
+   INIT (SAME + READER)
+   ============================================================ */
 function init(){
   initThemeAndSkin();
   state=loadState();
   loadReminder();
   loadAudioPrefs();
+  initReader();
   buildParahOptions();
   fillSetupInputs();
   updateReminderUI();
