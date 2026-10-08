@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -23,114 +23,62 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Download Android Command Line Tools
+      - name: Create www folder
         run: |
-          mkdir -p $HOME/android-sdk/cmdline-tools
-          cd $HOME/android-sdk/cmdline-tools
-          wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdtools.zip
-          unzip -q cmdtools.zip
-          mv cmdline-tools latest
-          rm cmdtools.zip
-          echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
-          echo "ANDROID_SDK_ROOT=$HOME/android-sdk" >> $GITHUB_ENV
-          echo "$HOME/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
+          mkdir -p www
+          cat > www/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset="utf-8">
+            <title>Quran Companion</title>
+          </head>
+          <body>
+            <script>
+              window.location.href = "https://aasimkhaan923-as.github.io/ISLAM-29/";
+            </script>
+          </body>
+          </html>
+          EOF
 
-      - name: Accept Android Licenses and Install SDK
+      - name: Initialize Capacitor
         run: |
-          yes | sdkmanager --licenses > /dev/null 2>&1 || true
-          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+          npm init -y
+          npm install @capacitor/core@5 @capacitor/cli@5 @capacitor/android@5
 
-      - name: Install Bubblewrap CLI
-        run: npm install -g @bubblewrap/cli
-
-      - name: Setup Bubblewrap Config
+      - name: Create Capacitor Config
         run: |
-          mkdir -p $HOME/.bubblewrap
-          cat > $HOME/.bubblewrap/config.json << EOF
+          cat > capacitor.config.json << 'EOF'
           {
-            "jdkPath": "$JAVA_HOME",
-            "androidSdkPath": "$HOME/android-sdk"
+            "appId": "com.aktech.qurancompanion",
+            "appName": "Quran Companion",
+            "webDir": "www",
+            "server": {
+              "url": "https://aasimkhaan923-as.github.io/ISLAM-29/",
+              "androidScheme": "https",
+              "cleartext": true
+            },
+            "android": {
+              "allowMixedContent": true
+            }
           }
           EOF
 
-      - name: Create Keystore
-        run: |
-          keytool -genkeypair -v \
-            -keystore $HOME/.bubblewrap/android.keystore \
-            -alias quran-companion \
-            -keyalg RSA \
-            -keysize 2048 \
-            -validity 10000 \
-            -storepass quran2026aktech \
-            -keypass quran2026aktech \
-            -dname "CN=AK TECH, O=AKTECH, L=Karachi, C=PK"
+      - name: Add Android Platform
+        run: npx cap add android
 
-      - name: Prepare Manifest
-        run: |
-          mkdir -p build-app
-          cd build-app
-          cat > twa-manifest.json << 'EOF'
-          {
-            "packageId": "com.aktech.qurancompanion",
-            "host": "aasimkhaan923-as.github.io",
-            "name": "Quran Companion",
-            "launcherName": "Quran",
-            "display": "standalone",
-            "themeColor": "#0e7a5f",
-            "themeColorDark": "#06120e",
-            "navigationColor": "#0a5c47",
-            "navigationColorDark": "#06120e",
-            "navigationDividerColor": "#0a5c47",
-            "navigationDividerColorDark": "#06120e",
-            "backgroundColor": "#eef5f1",
-            "enableNotifications": true,
-            "startUrl": "/ISLAM-29/",
-            "iconUrl": "https://cdn-icons-png.flaticon.com/512/3004/3004458.png",
-            "maskableIconUrl": "https://cdn-icons-png.flaticon.com/512/3004/3004458.png",
-            "splashScreenFadeOutDuration": 300,
-            "signingKey": {
-              "path": "/home/runner/.bubblewrap/android.keystore",
-              "alias": "quran-companion"
-            },
-            "appVersionName": "6.0.0",
-            "appVersionCode": 1,
-            "shortcuts": [],
-            "generatorApp": "bubblewrap-cli",
-            "webManifestUrl": "https://aasimkhaan923-as.github.io/ISLAM-29/manifest.json",
-            "fallbackType": "customtabs",
-            "features": {},
-            "alphaDependencies": {
-              "enabled": false
-            },
-            "enableSiteSettingsShortcut": true,
-            "isChromeOSOnly": false,
-            "isMetaQuest": false,
-            "fullScopeUrl": "https://aasimkhaan923-as.github.io/ISLAM-29/",
-            "minSdkVersion": 21,
-            "orientation": "portrait",
-            "fingerprints": [],
-            "additionalTrustedOrigins": [],
-            "retainedBundles": []
-          }
-          EOF
+      - name: Sync Capacitor
+        run: npx cap sync android
 
-      - name: Build APK
-        working-directory: build-app
-        env:
-          BUBBLEWRAP_KEYSTORE_PASSWORD: quran2026aktech
-          BUBBLEWRAP_KEY_PASSWORD: quran2026aktech
-        run: bubblewrap build --skipPwaValidation
+      - name: Build Debug APK
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: quran-companion-apk
-          path: build-app/*.apk
-          if-no-files-found: warn
-
-      - name: Upload Keystore
-        uses: actions/upload-artifact@v4
-        with:
-          name: signing-keystore
-          path: /home/runner/.bubblewrap/android.keystore
-          if-no-files-found: warn
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
