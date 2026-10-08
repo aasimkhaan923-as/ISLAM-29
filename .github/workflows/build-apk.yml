@@ -1,0 +1,114 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Bubblewrap CLI
+        run: npm install -g @bubblewrap/cli
+
+      - name: Create Keystore
+        run: |
+          mkdir -p $HOME/.bubblewrap
+          keytool -genkeypair -v -keystore $HOME/.bubblewrap/android.keystore -alias quran-companion -keyalg RSA -keysize 2048 -validity 10000 -storepass quran2026 -keypass quran2026 -dname "CN=AK TECH, O=AKTECH, C=PK"
+
+      - name: Write Config
+        run: |
+          cat > $HOME/.bubblewrap/config.json << EOF
+          {
+            "jdkPath": "$JAVA_HOME",
+            "androidSdkPath": "$ANDROID_HOME"
+          }
+          EOF
+
+      - name: Create Manifest
+        run: |
+          mkdir -p build-app
+          cd build-app
+          cat > twa-manifest.json << 'EOF'
+          {
+            "packageId": "com.aktech.qurancompanion",
+            "host": "aasimkhaan923-as.github.io",
+            "name": "Quran Companion",
+            "launcherName": "Quran",
+            "display": "standalone",
+            "themeColor": "#0e7a5f",
+            "themeColorDark": "#06120e",
+            "navigationColor": "#0a5c47",
+            "navigationColorDark": "#06120e",
+            "navigationDividerColor": "#0a5c47",
+            "navigationDividerColorDark": "#06120e",
+            "backgroundColor": "#eef5f1",
+            "enableNotifications": true,
+            "startUrl": "/ISLAM-29/",
+            "iconUrl": "https://cdn-icons-png.flaticon.com/512/3004/3004458.png",
+            "maskableIconUrl": "https://cdn-icons-png.flaticon.com/512/3004/3004458.png",
+            "splashScreenFadeOutDuration": 300,
+            "signingKey": {
+              "path": "/home/runner/.bubblewrap/android.keystore",
+              "alias": "quran-companion"
+            },
+            "appVersionName": "6.0.0",
+            "appVersionCode": 1,
+            "shortcuts": [],
+            "generatorApp": "bubblewrap-cli",
+            "webManifestUrl": "https://aasimkhaan923-as.github.io/ISLAM-29/manifest.json",
+            "fallbackType": "customtabs",
+            "features": {},
+            "alphaDependencies": {
+              "enabled": false
+            },
+            "enableSiteSettingsShortcut": true,
+            "isChromeOSOnly": false,
+            "isMetaQuest": false,
+            "fullScopeUrl": "https://aasimkhaan923-as.github.io/ISLAM-29/",
+            "minSdkVersion": 21,
+            "orientation": "portrait",
+            "fingerprints": [],
+            "additionalTrustedOrigins": [],
+            "retainedBundles": []
+          }
+          EOF
+
+      - name: Build APK
+        working-directory: build-app
+        run: bubblewrap build --skipPwaValidation
+        env:
+          BUBBLEWRAP_KEYSTORE_PASSWORD: quran2026
+          BUBBLEWRAP_KEY_PASSWORD: quran2026
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: quran-companion-apk
+          path: build-app/*.apk
+          if-no-files-found: warn
+
+      - name: Upload Keystore
+        uses: actions/upload-artifact@v4
+        with:
+          name: signing-keystore
+          path: /home/runner/.bubblewrap/android.keystore
+          if-no-files-found: warn
