@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Setup Java 17
         uses: actions/setup-java@v4
@@ -23,27 +23,32 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Install Bubblewrap CLI
         run: npm install -g @bubblewrap/cli
 
-      - name: Create Keystore
+      - name: Setup Bubblewrap Config
         run: |
           mkdir -p $HOME/.bubblewrap
-          keytool -genkeypair -v -keystore $HOME/.bubblewrap/android.keystore -alias quran-companion -keyalg RSA -keysize 2048 -validity 10000 -storepass quran2026 -keypass quran2026 -dname "CN=AK TECH, O=AKTECH, C=PK"
-
-      - name: Write Config
-        run: |
           cat > $HOME/.bubblewrap/config.json << EOF
           {
             "jdkPath": "$JAVA_HOME",
-            "androidSdkPath": "$ANDROID_HOME"
+            "androidSdkPath": "/usr/local/lib/android/sdk"
           }
           EOF
 
-      - name: Create Manifest
+      - name: Create Keystore
+        run: |
+          keytool -genkeypair -v \
+            -keystore $HOME/.bubblewrap/android.keystore \
+            -alias quran-companion \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -storepass quran2026aktech \
+            -keypass quran2026aktech \
+            -dname "CN=AK TECH, O=AKTECH, L=Karachi, C=PK"
+
+      - name: Prepare Manifest
         run: |
           mkdir -p build-app
           cd build-app
@@ -94,10 +99,10 @@ jobs:
 
       - name: Build APK
         working-directory: build-app
-        run: bubblewrap build --skipPwaValidation
         env:
-          BUBBLEWRAP_KEYSTORE_PASSWORD: quran2026
-          BUBBLEWRAP_KEY_PASSWORD: quran2026
+          BUBBLEWRAP_KEYSTORE_PASSWORD: quran2026aktech
+          BUBBLEWRAP_KEY_PASSWORD: quran2026aktech
+        run: bubblewrap build --skipPwaValidation
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
